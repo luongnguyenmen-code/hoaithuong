@@ -1,0 +1,749 @@
+/* 1. CẤU HÌNH CHUNG: NỀN TRẮNG - CHỮ ĐỎ */
+body {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #ffffff;
+    /* Nền trắng */
+    color: #C41E3A;
+    /* Chữ đỏ toàn trang */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Playfair Display', serif;
+    color: #C41E3A !important;
+    /* Tiêu đề bắt buộc màu đỏ */
+}
+
+/* 2. SỬA PHẦN PHONG BÌ (ENVELOPE) SANG MÀU TRẮNG */
+.envelope-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    /* Nền che mờ màu trắng */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease-out;
+    backdrop-filter: blur(5px);
+}
+
+.envelope-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.envelope-container {
+    position: relative;
+    width: 320px;
+    height: 200px;
+    perspective: 1000px;
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+/* Phong bì: Đổi nền đỏ -> nền trắng + viền đỏ */
+.envelope-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    border: 2px solid #C41E3A;
+    /* Viền đỏ */
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(196, 30, 58, 0.15);
+}
+
+/* Nắp phong bì: Đổi nền đỏ -> nền trắng xám + viền đỏ */
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: #f8f8f8;
+    border-bottom: 2px solid #C41E3A;
+    /* Viền đỏ */
+    transform-origin: top;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 8px 8px 0 0;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    z-index: 5;
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(-180deg);
+    z-index: 1;
+}
+
+.envelope-seal {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: #C41E3A;
+    /* Giữ con dấu màu đỏ làm điểm nhấn */
+    border: 2px solid white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    transition: all 0.3s;
+}
+
+.envelope-seal:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.invitation-card {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 280px;
+    background: white;
+    border: 1px solid #C41E3A;
+    /* Thêm viền đỏ cho thiệp */
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    z-index: 2;
+}
+
+.envelope.open .invitation-card {
+    bottom: 120px;
+    opacity: 1;
+    z-index: 6;
+}
+
+/* --- SỬA LỖI HIỂN THỊ NGÀY THÁNG --- */
+#wedding-date,
+/* Ngày to ở đầu trang */
+#envelope-wedding-date,
+/* Ngày nhỏ trên phong bì */
+.slide-date,
+/* Ngày trong khung trượt ảnh */
+.text-sm
+
+/* Các dòng chữ nhỏ khác */
+    {
+    color: #C41E3A !important;
+    /* Bắt buộc chuyển sang màu đỏ */
+    opacity: 1 !important;
+    /* Hiển thị rõ nét, không làm mờ */
+    text-shadow: none !important;
+    /* Bỏ bóng chữ nếu có */
+    visibility: visible !important;
+}
+
+/* Nút mở: Đổi sang nền đỏ chữ trắng cho nổi trên nền web trắng */
+.open-button {
+    background: #C41E3A;
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 20px rgba(196, 30, 58, 0.3);
+    transition: all 0.3s;
+}
+
+.open-button:hover {
+    background: #a0122f;
+    transform: translateX(-50%) translateY(-2px);
+}
+
+/* =========================================
+   MẪU SLIDER: ELEGANT LIGHT (Hợp White Theme)
+   ========================================= */
+
+/* 1. KHUNG CHỨA SLIDER */
+.slider-section {
+    position: relative;
+    width: 100%;
+
+    /* 1. GIỚI HẠN CHIỀU NGANG (QUAN TRỌNG) */
+    /* 500px là kích thước chuẩn đẹp cho ảnh dọc, tương đương màn hình điện thoại to */
+    max-width: 500px;
+
+    /* 2. CANH GIỮA MÀN HÌNH */
+    margin: 40px auto;
+
+    /* 3. CHIỀU CAO */
+    height: 80vh;
+    /* Cao bằng 80% màn hình để không bị quá dài */
+    min-height: 600px;
+
+    overflow: hidden;
+    background-color: #ffffff;
+
+    /* 4. TRANG TRÍ KHUNG (Vì giờ nó nằm giữa nên cần bo góc và đổ bóng cho đẹp) */
+    border-radius: 20px;
+    /* Bo tròn 4 góc */
+    border: 8px solid #ffffff;
+    /* Viền trắng dày bao quanh */
+    box-shadow: 0 20px 60px rgba(196, 30, 58, 0.15);
+    /* Đổ bóng màu đỏ nhạt */
+    outline: 1px solid #eee;
+    /* Viền mỏng ngoài cùng */
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+/* 2. ẢNH NỀN (Làm mờ & Sáng rực rỡ) */
+.slide-bg-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Làm mờ và tăng độ sáng để tạo nền trắng hồng nhẹ nhàng */
+    filter: blur(20px) brightness(1.2) contrast(0.8);
+    opacity: 0.5;
+    /* Mờ đi để lộ nền trắng bên dưới */
+    transform: scale(1.1);
+    z-index: 0;
+}
+
+/* 3. ẢNH CHÍNH (Đã bỏ viền đỏ) */
+.slide-image-main {
+    position: relative;
+    z-index: 1;
+    height: 80%;
+    width: auto;
+    max-width: 90%;
+    object-fit: contain;
+
+    /* Trang trí: Chỉ giữ viền trắng, bỏ outline đỏ */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Bóng đổ nhẹ */
+    border: 4px solid #ffffff; /* Viền trắng dày */
+    outline: none; /* <-- ĐÃ XÓA VIỀN ĐỎ */
+
+    transform: translateY(20px);
+    transition: transform 1s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.slide.active .slide-image-main {
+    transform: translateY(0);
+}
+
+/* 4. HỘP NỘI DUNG (Nền kính trắng - Chữ Đỏ) */
+.slide-content {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 2;
+    width: 85%;
+    max-width: 500px;
+
+    /* Nền trắng mờ (Frosted Glass) */
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    padding: 20px 30px;
+    border-radius: 50px;
+    /* Bo tròn hình viên thuốc */
+    border: 1px solid rgba(196, 30, 58, 0.2);
+    /* Viền đỏ mờ */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+
+    /* Hiệu ứng trồi lên */
+    opacity: 0;
+    transition: all 0.8s ease 0.4s;
+    transform: translateX(-50%) translateY(30px);
+}
+
+.slide.active .slide-content {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Chỉnh màu chữ sang ĐỎ (Theme) thay vì Trắng */
+.slide-caption {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: #8B1538 !important;
+    /* Đỏ đậm */
+    margin-bottom: 5px;
+    line-height: 1.4;
+    text-shadow: none;
+    /* Bỏ bóng đen */
+}
+
+.slide-date {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #C41E3A !important;
+    /* Đỏ tươi */
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* 5. NÚT ĐIỀU HƯỚNG (Làm mờ/Trong suốt) */
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    
+    /* Thay đổi: Nền trong suốt mờ ảo */
+    background: rgba(255, 255, 255, 0.25); 
+    backdrop-filter: blur(4px); /* Hiệu ứng kính mờ */
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Viền trắng mờ */
+    box-shadow: none; /* Bỏ bóng cứng */
+    
+    color: #C41E3A; /* Mũi tên vẫn màu đỏ để khách dễ nhìn thấy */
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+/* Khi di chuột vào mới hiện rõ màu đỏ */
+.slider-nav:hover {
+    background: #C41E3A; 
+    color: #ffffff;
+    border-color: #C41E3A;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 5px 15px rgba(196, 30, 58, 0.3);
+}
+
+.slider-nav.prev {
+    left: 20px;
+}
+
+.slider-nav.next {
+    right: 20px;
+}
+
+/* 6. CHẤM TRÒN */
+.slider-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(196, 30, 58, 0.2);
+    border: 1px solid #C41E3A;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.slider-dot.active {
+    background: #C41E3A;
+    transform: scale(1.5);
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+    .slide-image-main {
+        height: 75%;
+        /* Giảm chiều cao ảnh trên mobile */
+        max-width: 90%;
+        border-width: 3px;
+        /* Viền mỏng hơn chút */
+    }
+
+    .slide-content {
+        bottom: 70px;
+        /* Đẩy chữ lên cao */
+        padding: 15px 20px;
+        width: 85%;
+    }
+
+    .slide-caption {
+        font-size: 15px;
+    }
+
+    .slider-nav {
+        display: none;
+    }
+
+    /* Ẩn nút trên mobile */
+}
+
+/* Hiệu ứng cánh hoa */
+.falling-petals {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.petal {
+    position: absolute;
+    top: -20px;
+    width: 10px;
+    height: 10px;
+    /* Cánh hoa đỏ/hồng để nổi trên nền trắng */
+    background: radial-gradient(circle, #ff9e99 0%, #C41E3A 100%);
+    border-radius: 50% 0 50% 0;
+    opacity: 0.7;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        top: -20px;
+        transform: translateX(0) rotate(0deg);
+    }
+
+    100% {
+        top: 100%;
+        transform: translateX(100px) rotate(360deg);
+    }
+}
+
+/* 4. SỬA HERO SECTION (NỀN TRẮNG) */
+.hero-section {
+    background: #ffffff;
+    /* Nền trắng */
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+    color: #C41E3A;
+    /* Chữ đỏ */
+}
+
+.hero-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    /* Họa tiết màu đỏ nhạt */
+    background-image:
+        radial-gradient(circle at 20% 50%, #C41E3A 1px, transparent 1px),
+        radial-gradient(circle at 80% 80%, #C41E3A 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* Các thành phần phụ trợ */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 9px;
+    aspect-ratio: 1;
+    background: #f8f8f8;
+    border: 1px solid #eee;
+}
+
+.gallery-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    opacity: 0.3;
+}
+
+.message-card {
+    background: white;
+    border: 1px solid #eee;
+    /* Thêm viền mỏng */
+    border-left: 4px solid #C41E3A;
+    padding: 20px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    animation: fadeInUp 0.5s ease-out;
+    color: #C41E3A;
+}
+
+.message-card p {
+    color: #C41E3A;
+}
+
+.message-card span {
+    color: #999;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.invitation-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    /* Nền modal trắng mờ */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.invitation-modal.active {
+    display: flex;
+}
+
+.invitation-content {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90%;
+    overflow-y: auto;
+    position: relative;
+    border: 2px solid #C41E3A;
+    /* Viền đỏ */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    color: #C41E3A;
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+    background: white;
+    border: 2px solid #C41E3A;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.decorative-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #C41E3A, transparent);
+    margin: 30px 0;
+    opacity: 0.6;
+}
+
+/* Input giữ chữ đen khi nhập cho dễ nhìn */
+input,
+textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    transition: border-color 0.3s;
+    color: #333;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #C41E3A;
+}
+
+.btn-primary {
+    background: #C41E3A;
+    /* Nền đỏ */
+    color: white;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    background: #a0122f;
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #C41E3A;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 2000;
+    animation: slideUp 0.3s ease-out;
+}
+
+.toast.active {
+    display: block;
+}
+
+.map-container {
+    border: 1px solid #C41E3A;
+    box-shadow: inset 0 0 20px rgba(196, 30, 58, 0.1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* Helper classes cho màu chữ */
+.text-gray-500,
+.text-gray-600,
+.text-gray-700 {
+    color: #C41E3A !important;
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 500px;
+    }
+
+    .slider-section {
+        position: relative;
+        width: 100%;
+
+        /* 1. GIỚI HẠN CHIỀU NGANG (QUAN TRỌNG) */
+        /* 500px là kích thước chuẩn đẹp cho ảnh dọc, tương đương màn hình điện thoại to */
+        max-width: 500px;
+
+        /* 2. CANH GIỮA MÀN HÌNH */
+        margin: 40px auto;
+
+        /* 3. CHIỀU CAO */
+        height: 80vh;
+        /* Cao bằng 80% màn hình để không bị quá dài */
+        min-height: 600px;
+
+        overflow: hidden;
+        background-color: #ffffff;
+
+        /* 4. TRANG TRÍ KHUNG (Vì giờ nó nằm giữa nên cần bo góc và đổ bóng cho đẹp) */
+        border-radius: 20px;
+        /* Bo tròn 4 góc */
+        border: 8px solid #ffffff;
+        /* Viền trắng dày bao quanh */
+        box-shadow: 0 20px 60px rgba(196, 30, 58, 0.15);
+        /* Đổ bóng màu đỏ nhạt */
+        outline: 1px solid #eee;
+        /* Viền mỏng ngoài cùng */
+    }
+
+    .slide-caption {
+        font-size: 18px;
+    }
+
+    .slide-date {
+        font-size: 12px;
+    }
+
+    .slider-nav {
+        width: 40px;
+        height: 40px;
+    }
+
+    .slider-nav.prev {
+        left: 10px;
+    }
+
+    .slider-nav.next {
+        right: 10px;
+    }
+
+    .slide-content {
+        bottom: 60px;
+        padding: 0 20px;
+    }
+
+    .invitation-content {
+        padding: 24px;
+    }
+
+    .qr-code {
+        width: 150px;
+        height: 150px;
+    }
+}

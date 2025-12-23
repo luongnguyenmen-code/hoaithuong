@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <script src="/_sdk/data_sdk.js"></script>
+    <script src="/_sdk/element_sdk.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="/assets/icon/logo2bx.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <style>
+        @view-transition {
+            navigation: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="player" src="mp3/wd.mp3"></audio>
+    <div id="envelope-overlay" class="envelope-overlay">
+        <div class="envelope-container">
+            <div id="envelope" class="envelope">
+                <div class="envelope-back"></div>
+                <div class="envelope-flap"></div>
+                <div class="envelope-seal">
+                    <svg width="30" height="30" viewbox="0 0 30 30" fill="none">
+                        <path d="M15 5 L20 10 L15 15 L10 10 Z" fill="white" opacity="0.5" />
+                        <path d="M15 15 L20 20 L15 25 L10 20 Z" fill="white" opacity="0.3" />
+                    </svg>
+                </div>
+                <div class="invitation-card ">
+                    <div class="text-center">
+                        <p class="text-sm mb-2" style="color: #999; letter-spacing: 2px;">WEDDING INVITATION</p>
+                        <h3 id="envelope-bride-name" class="text-3xl mb-2 font-bold" style="color: #C41E3A;">Hoài Thương
+                        </h3>
+                        <p class="text-xl mb-2" style="color: #8B1538;">♾️</p>
+                        <h3 id="envelope-groom-name" class="text-3xl mb-4 font-bold" style="color: #C41E3A;">Thanh Phong
+                        </h3>
+                        <div
+                            style="height: 2px; background: linear-gradient(90deg, transparent, #C41E3A, transparent); margin: 20px 0;">
+                        </div>
+                        <p id="envelope-wedding-date" class="text-lg" style="color: #666;">🤍 28-29/12/2025 🤍</p>
+                        <p class="text-sm mt-4 italic" style="color: #999;">Trân trọng kính mời</p>
+                    </div>
+                </div>
+            </div><button id="open-button" class="open-button">Mở Thiệp 💌</button>
+        </div>
+    </div><!-- Falling Petals Container -->
+    <div id="falling-petals" class="falling-petals"></div><!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-pattern"></div>
+        <div class="relative z-10 text-center text-white px-6 py-20 min-h-screen">
+            <div class="mb-8">
+                <p class="text-xl mb-4 font-light tracking-widest">WEDDING INVITATION</p>
+                <h1 id="bride-name" class="text-5xl md:text-7xl mb-2 font-bold">Hoài Thương</h1>
+                <p class="text-3xl md:text-4xl my-6 font-light">♾️</p>
+                <h1 id="groom-name" class="text-5xl md:text-7xl mb-6 font-bold">Thanh Phong</h1>
+                <div class="decorative-line max-w-md mx-auto"></div>
+                <p id="wedding-date" class="text-2xl mt-6 font-light tracking-wide">🤍 28-29/12/2025 🤍</p>
+            </div>
+            <img src="assets/gif/mewmew.gif" alt="GIF" class="center-gif" />
+        </div>
+    </section>
+    <section class="slider-section">
+        <div class="slider-container">
+            
+            <div class="slide active">
+                <img src="assets/image/img1.jpg" class="slide-bg-blur">
+                
+                <img src="assets/image/img1.jpg" alt="Ảnh cưới 1" class="slide-image-main">
+                
+                <div class="slide-content">
+                    <p class="slide-caption">"Tình yêu không phải là nhìn nhau.."</p>
+                    <p class="slide-date">🤍 28-29/12/2025 🤍</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="assets/image/img2.jpg" class="slide-bg-blur">
+                <img src="assets/image/img2.jpg" alt="Ảnh cưới 2" class="slide-image-main">
+                
+                <div class="slide-content">
+                    <p class="slide-caption">"Từ ngày có em..."</p>
+                    <p class="slide-date">LỄ VU QUY • 28.12.2025</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="assets/image/img3.jpg" class="slide-bg-blur">
+                <img src="assets/image/img3.jpg" alt="Ảnh cưới 3" class="slide-image-main">
+                
+                <div class="slide-content">
+                    <p class="slide-caption">"Mỗi khoảnh khắc bên em..."</p>
+                    <p class="slide-date">HÀNH TRÌNH YÊU THƯƠNG</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="assets/image/img4.jpg" class="slide-bg-blur">
+                <img src="assets/image/img4.jpg" alt="Ảnh cưới 4" class="slide-image-main">
+                
+                <div class="slide-content">
+                    <p class="slide-caption">"Em là lý do để anh tin..."</p>
+                    <p class="slide-date">TÌNH YÊU VĨNH CỬU</p>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="slider-nav prev" onclick="changeSlide(-1)">❮</button> 
+        <button class="slider-nav next" onclick="changeSlide(1)">❯</button>
+        <div class="slider-dots">
+            <span class="slider-dot active" onclick="goToSlide(0)"></span> 
+            <span class="slider-dot" onclick="goToSlide(1)"></span> 
+            <span class="slider-dot" onclick="goToSlide(2)"></span> 
+            <span class="slider-dot" onclick="goToSlide(3)"></span>
+        </div>
+    </section>
+    <div class="w-full max-w-6xl mx-auto px-6 py-16"><!-- Gallery Section -->
+        <section class="mb-20">
+            <h2 class="text-4xl text-center mb-4 font-bold" style="color: #8B1538;">Khoảnh Khắc Hạnh Phúc</h2>
+            <div class="decorative-line max-w-md mx-auto mb-12"></div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                <div class="gallery-item"> <img src="assets/image/1.jpg" alt="img1" /></div>
+                <div class="gallery-item"><img src="assets/image/2.jpg" alt="img2" /></div>
+                <div class="gallery-item"><img src="assets/image/3.jpg" alt="img3" /></div>
+                <div class="gallery-item"><img src="assets/image/4.jpg" alt="img4" /></div>
+                <div class="gallery-item"><img src="assets/image/5.jpg" alt="img5" /></div>
+                <div class="gallery-item"><img src="assets/image/6.jpg" alt="img6" /></div>
+            </div>
+        </section><!-- Invitation Section -->
+        <section class="mb-20 bg-gradient-to-br from-red-50 to-pink-50 p-8 md:p-12 rounded-2xl">
+            <h2 id="invitation-title" class="text-4xl text-center mb-6 font-bold" style="color: #8B1538;">Trân Trọng
+                Kính Mời</h2>
+            <div class="decorative-line max-w-md mx-auto mb-8"></div>
+            <p id="invitation-text" class="text-center text-lg mb-8 leading-relaxed max-w-2xl mx-auto"
+                style="color: #333;">Sự hiện diện của quý khách là niềm vinh hạnh cho gia đình chúng tôi. Chúng tôi rất
+                mong được đón tiếp quý khách trong ngày trọng đại này.</p>
+            <div class="text-center mb-8">
+                <div class="inline-block text-left">
+                    <p class="text-lg mb-2"><span class="font-semibold" style="color: #8B1538;">⏰ Thời gian:</span>
+                        <span id="event-time">18:00 - 20:00</span>
+                    </p>
+                    <p class="text-lg"><span class="font-semibold" style="color: #8B1538;">📍 Địa điểm:</span> <span
+                            id="event-location">Tổ chức tư gia</span></p>
+                </div>
+            </div>
+            <div class="text-center"><button onclick="openInvitation()" class="btn-primary">Xem Chi Tiết Thiệp
+                    Mời</button>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <h2 class="text-4xl text-center mb-4 font-bold" style="color: #C41E3A;">Bản Đồ Đến Tiệc Cưới</h2>
+            <div class="decorative-line max-w-md mx-auto mb-12"></div>
+
+            <div class="w-full max-w-4xl mx-auto bg-white p-4 rounded-2xl shadow-lg border-2 border-[#C41E3A]">
+                <div class="relative w-full rounded-xl overflow-hidden border border-gray-200 mb-6"
+                    style="padding-bottom: 56.25%; height: 0;">
+                    <iframe src="https://maps.google.com/maps?q=9.695139,105.718833&hl=vi&z=17&amp;output=embed"
+                        class="absolute top-0 left-0 w-full h-full border-0" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+                <div class="text-center">
+                    <p class="mb-4 text-lg font-medium" style="color: #C41E3A;">
+                        📍 Địa điểm tổ chức tư gia
+                    </p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=9.695139,105.718833" target="_blank"
+                        class="btn-primary inline-block"
+                        style="text-decoration: none; display: inline-block; color: white;">
+                        Mở Google Maps Chỉ Đường 🗺️
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <h2 class="text-4xl text-center mb-4 font-bold" style="color: #8B1538;">Gửi Lời Chúc</h2>
+            <div class="decorative-line max-w-md mx-auto mb-12"></div>
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl mb-6 font-semibold" style="color: #8B1538;">✍️ Để Lại Lời Chúc</h3>
+                    <form id="message-form" onsubmit="handleSubmitMessage(event)">
+                        <div class="mb-4"><label class="block mb-2 font-medium" style="color: #333;">Tên của bạn</label>
+                            <input type="text" id="guest-name" placeholder="Nhập tên của bạn" required>
+                        </div>
+                        <div class="mb-6"><label class="block mb-2 font-medium" style="color: #333;">Lời chúc</label>
+                            <textarea id="message-text" rows="4" placeholder="Gửi lời chúc đến cặp đôi..."
+                                required></textarea>
+                        </div><button type="submit" id="submit-btn" class="btn-primary w-full">Gửi Lời Chúc 💝</button>
+                    </form>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+                    <h3 class="text-2xl mb-6 font-semibold" style="color: #8B1538;">📱 Quét Mã QR</h3>
+                    <p class="mb-6 text-gray-600">Quét mã để gửi lời chúc nhanh chóng</p>
+                    <div class="qr-code mx-auto">
+                        <svg width="180" height="180" viewbox="0 0 180 180">
+                            <rect width="180" height="180" fill="white" />
+                            <img src="assets/image/qrbank.jpg" alt="qr" />
+                        </svg>
+                    </div>
+                    <p class="mt-6 text-sm text-gray-500">Mở camera điện thoại và quét mã QR</p>
+                </div>
+            </div>
+        </section><!-- Messages Display Section -->
+        <section>
+            <h2 id="messages-title" class="text-4xl text-center mb-4 font-bold" style="color: #8B1538;">Sổ Lưu Bút</h2>
+            <div class="decorative-line max-w-md mx-auto mb-12"></div>
+            <div id="messages-container" class="max-w-4xl mx-auto">
+                <p class="text-center text-gray-500 py-12">Chưa có lời chúc nào. Hãy là người đầu tiên gửi lời chúc! 💝
+                </p>
+            </div>
+        </section>
+    </div>
+    <div id="invitation-modal" class="invitation-modal" onclick="closeInvitation(event)">
+        <div class="invitation-content" onclick="event.stopPropagation()"><button onclick="closeInvitation()"
+                class="absolute top-4 right-4 text-3xl" style="color: #C41E3A;">×</button>
+            <div class="text-center">
+                <h2 class="text-4xl mb-6 font-bold" style="color: #8B1538;">Thiệp Mời</h2>
+                <div class="decorative-line mb-8"></div>
+                <p class="text-2xl mb-4 font-light">Trân trọng kính mời</p>
+                <h3 class="text-3xl mb-8 font-semibold" style="color: #8B1538;">Quý Khách</h3>
+                <p class="text-lg mb-6 leading-relaxed">Đến dự tiệc chung vui cùng gia đình chúng tôi nhân dịp hôn lễ
+                    của</p>
+                <h3 id="modal-bride-name" class="text-4xl mb-3 font-bold" style="color: #C41E3A;">Hoài Thương</h3>
+                <p class="text-2xl mb-3">❤</p>
+                <h3 id="modal-groom-name" class="text-4xl mb-8 font-bold" style="color: #C41E3A;">Thanh Phong</h3>
+                <div class="decorative-line mb-8"></div>
+                <div class="text-left inline-block mb-8">
+                    <p class="text-lg mb-3"><span class="font-semibold" style="color: #8B1538;">📅 Ngày:</span> <span
+                            id="modal-wedding-date">🤍 28-29/12/2025 🤍</span></p>
+                    <p class="text-lg mb-3"><span class="font-semibold" style="color: #8B1538;">⏰ Thời gian:</span>
+                        <span id="modal-event-time">18:00 - 20:00</span>
+                    </p>
+                    <p class="text-lg"><span class="font-semibold" style="color: #8B1538;">📍 Địa điểm:</span> <span
+                            id="modal-event-location">Trung tâm Tiệc Cưới Palace</span></p>
+                </div>
+                <div class="decorative-line mb-8"></div>
+                <p class="text-lg italic" style="color: #666;">Sự hiện diện của quý khách là niềm vinh hạnh cho gia đình
+                    chúng tôi!</p>
+            </div>
+        </div>
+    </div><!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+    <script src="/assets/js/main.js"></script>
+</body>
+
+</html>

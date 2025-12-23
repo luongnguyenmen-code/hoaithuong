@@ -13,6 +13,8 @@
         rel="stylesheet">
     <link rel="icon" type="image/png" href="/assets/icon/logo2bx.png">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <style>
         @view-transition {
             navigation: auto;
@@ -38,7 +40,7 @@
                         <p class="text-sm mb-2" style="color: #999; letter-spacing: 2px;">WEDDING INVITATION</p>
                         <h3 id="envelope-bride-name" class="text-3xl mb-2 font-bold" style="color: #C41E3A;">Hoài Thương
                         </h3>
-                        <p class="text-xl mb-2" style="color: #8B1538;">♾️</p>
+                        <p class="text-4xl mb-2 font-bold" style="color: #C41E3A; line-height: 1;">∞</p>
                         <h3 id="envelope-groom-name" class="text-3xl mb-4 font-bold" style="color: #C41E3A;">Thanh Phong
                         </h3>
                         <div
@@ -58,7 +60,7 @@
             <div class="mb-8">
                 <p class="text-xl mb-4 font-light tracking-widest">WEDDING INVITATION</p>
                 <h1 id="bride-name" class="text-5xl md:text-7xl mb-2 font-bold">Hoài Thương</h1>
-                <p class="text-3xl md:text-4xl my-6 font-light">♾️</p>
+                <p class="text-6xl md:text-8xl my-6 font-light" style="color: #C41E3A; line-height: 1;">∞</p>
                 <h1 id="groom-name" class="text-5xl md:text-7xl mb-6 font-bold">Thanh Phong</h1>
                 <div class="decorative-line max-w-md mx-auto"></div>
                 <p id="wedding-date" class="text-2xl mt-6 font-light tracking-wide">🤍 28-29/12/2025 🤍</p>
@@ -68,12 +70,12 @@
     </section>
     <section class="slider-section">
         <div class="slider-container">
-            
+
             <div class="slide active">
                 <img src="assets/image/img1.jpg" class="slide-bg-blur">
-                
+
                 <img src="assets/image/img1.jpg" alt="Ảnh cưới 1" class="slide-image-main">
-                
+
                 <div class="slide-content">
                     <p class="slide-caption">"Tình yêu không phải là nhìn nhau.."</p>
                     <p class="slide-date">🤍 28-29/12/2025 🤍</p>
@@ -83,7 +85,7 @@
             <div class="slide">
                 <img src="assets/image/img2.jpg" class="slide-bg-blur">
                 <img src="assets/image/img2.jpg" alt="Ảnh cưới 2" class="slide-image-main">
-                
+
                 <div class="slide-content">
                     <p class="slide-caption">"Từ ngày có em..."</p>
                     <p class="slide-date">LỄ VU QUY • 28.12.2025</p>
@@ -93,7 +95,7 @@
             <div class="slide">
                 <img src="assets/image/img3.jpg" class="slide-bg-blur">
                 <img src="assets/image/img3.jpg" alt="Ảnh cưới 3" class="slide-image-main">
-                
+
                 <div class="slide-content">
                     <p class="slide-caption">"Mỗi khoảnh khắc bên em..."</p>
                     <p class="slide-date">HÀNH TRÌNH YÊU THƯƠNG</p>
@@ -103,7 +105,7 @@
             <div class="slide">
                 <img src="assets/image/img4.jpg" class="slide-bg-blur">
                 <img src="assets/image/img4.jpg" alt="Ảnh cưới 4" class="slide-image-main">
-                
+
                 <div class="slide-content">
                     <p class="slide-caption">"Em là lý do để anh tin..."</p>
                     <p class="slide-date">TÌNH YÊU VĨNH CỬU</p>
@@ -112,12 +114,12 @@
 
         </div>
 
-        <button class="slider-nav prev" onclick="changeSlide(-1)">❮</button> 
+        <button class="slider-nav prev" onclick="changeSlide(-1)">❮</button>
         <button class="slider-nav next" onclick="changeSlide(1)">❯</button>
         <div class="slider-dots">
-            <span class="slider-dot active" onclick="goToSlide(0)"></span> 
-            <span class="slider-dot" onclick="goToSlide(1)"></span> 
-            <span class="slider-dot" onclick="goToSlide(2)"></span> 
+            <span class="slider-dot active" onclick="goToSlide(0)"></span>
+            <span class="slider-dot" onclick="goToSlide(1)"></span>
+            <span class="slider-dot" onclick="goToSlide(2)"></span>
             <span class="slider-dot" onclick="goToSlide(3)"></span>
         </div>
     </section>

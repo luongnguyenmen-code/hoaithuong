@@ -193,7 +193,7 @@ function createFallingElements() {
 function addContinuousPetals() {
     setInterval(() => {
         const container = document.getElementById('falling-petals');
-        if (!container || container.children.length > 30) return;
+        if (!container || container.children.length > 80) return;
 
         const petal = document.createElement('div');
         petal.className = 'petal';

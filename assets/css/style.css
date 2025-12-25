@@ -1,14 +1,26 @@
 /* 1. CẤU HÌNH CHUNG: NỀN TRẮNG - CHỮ ĐỎ */
+/* 1. CẤU HÌNH CHUNG: NỀN TRẮNG HỌA TIẾT CHẤM BI ĐỎ MỜ */
 body {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background-color: #ffffff;
-    /* Nền trắng */
-    color: #C41E3A;
-    /* Chữ đỏ toàn trang */
+    color: #C41E3A; /* Chữ đỏ toàn trang */
+
+    /* --- CẤU HÌNH NỀN MỚI --- */
+    background-color: #ffffff; /* Lớp nền gốc màu trắng */
+
+    /* Tạo 2 lớp chấm bi mờ màu đỏ (#C41E3A) */
+    background-image:
+        radial-gradient(rgba(196, 30, 58, 0.1) 1.5px, transparent 1.5px),
+        radial-gradient(rgba(196, 30, 58, 0.1) 1.5px, transparent 1.5px);
+
+    /* Kích thước ô lặp lại họa tiết (càng to chấm càng thưa) */
+    background-size: 40px 40px;
+
+    /* Vị trí 2 lớp chấm bi đan xen nhau tạo cảm giác tự nhiên */
+    background-position: 0 0, 20px 20px;
 }
 
 h1,

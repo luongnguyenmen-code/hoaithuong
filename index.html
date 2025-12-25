@@ -35,37 +35,52 @@
                         <path d="M15 15 L20 20 L15 25 L10 20 Z" fill="white" opacity="0.3" />
                     </svg>
                 </div>
-                <div class="invitation-card ">
+                <div class="invitation-card">
                     <div class="text-center">
-                        <p class="text-sm mb-2" style="color: #999; letter-spacing: 2px;">WEDDING INVITATION</p>
-                        <h3 id="envelope-bride-name" class="text-3xl mb-2 font-bold" style="color: #C41E3A;">Hoài Thương
+                        <p class="text-sm mb-1" style="color: #999; letter-spacing: 2px;">WEDDING INVITATION</p>
+
+                        <h3 id="envelope-bride-name" class="text-3xl mb-1 font-bold" style="color: #C41E3A;">Hoài Thương
                         </h3>
-                        <p class="text-4xl mb-2 font-bold" style="color: #C41E3A; line-height: 1;">∞</p>
-                        <h3 id="envelope-groom-name" class="text-3xl mb-4 font-bold" style="color: #C41E3A;">Thanh Phong
+
+                        <p class="text-4xl mb-1 font-bold" style="color: #C41E3A; line-height: 1;">∞</p>
+
+                        <h3 id="envelope-groom-name" class="text-3xl mb-2 font-bold" style="color: #C41E3A;">Thanh Phong
                         </h3>
+
                         <div
-                            style="height: 2px; background: linear-gradient(90deg, transparent, #C41E3A, transparent); margin: 20px 0;">
+                            style="height: 2px; background: linear-gradient(90deg, transparent, #C41E3A, transparent); margin: 8px 0;">
                         </div>
+
                         <p id="envelope-wedding-date" class="text-lg" style="color: #666;">🤍 28-29/12/2025 🤍</p>
-                        <p class="text-sm mt-4 italic" style="color: #999;">Trân trọng kính mời</p>
+
+                        <p class="text-sm mt-2 italic" style="color: #999;">Trân trọng kính mời</p>
                     </div>
                 </div>
             </div><button id="open-button" class="open-button">Mở Thiệp 💌</button>
         </div>
     </div><!-- Falling Petals Container -->
     <div id="falling-petals" class="falling-petals"></div><!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero-section" style="position: relative; overflow: hidden;">
         <div class="hero-pattern"></div>
-        <div class="relative z-10 text-center text-white px-6 py-20 min-h-screen">
-            <div class="mb-8">
-                <p class="text-xl mb-4 font-light tracking-widest">WEDDING INVITATION</p>
-                <h1 id="bride-name" class="text-5xl md:text-7xl mb-2 font-bold">Hoài Thương</h1>
-                <p class="text-6xl md:text-8xl my-6 font-light" style="color: #C41E3A; line-height: 1;">∞</p>
-                <h1 id="groom-name" class="text-5xl md:text-7xl mb-6 font-bold">Thanh Phong</h1>
-                <div class="decorative-line max-w-md mx-auto"></div>
-                <p id="wedding-date" class="text-2xl mt-6 font-light tracking-wide">🤍 28-29/12/2025 🤍</p>
+        
+        <div class="gate-decoration" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1; pointer-events: none;">
+            <img src="assets/image/5.jpg" alt="Cổng hoa" 
+                 style="width: 100%; height: auto; max-height: 400px; object-fit: cover; mask-image: linear-gradient(to bottom, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);">
+        </div>
+        <div class="relative z-10 text-center text-white px-6 min-h-screen flex flex-col justify-center items-center" style="padding-top: 160px;">
+            <div class="mb-8 w-full">
+                <p class="text-xl mb-4 font-light tracking-widest text-shadow">WEDDING INVITATION</p>
+                
+                <h1 id="bride-name" class="text-5xl md:text-7xl mb-2 font-bold drop-shadow-lg">Hoài Thương</h1>
+                
+                <p class="text-6xl md:text-8xl my-6 font-light" style="color: #C41E3A; line-height: 1; text-shadow: 0 2px 4px rgba(255,255,255,0.8);">∞</p>
+                
+                <h1 id="groom-name" class="text-5xl md:text-7xl mb-6 font-bold drop-shadow-lg">Thanh Phong</h1>
+                
+                <div class="decorative-line max-w-md mx-auto bg-white/50"></div>
+                
+                <p id="wedding-date" class="text-2xl mt-6 font-light tracking-wide drop-shadow-md">🤍 28-29/12/2025 🤍</p>
             </div>
-            <img src="assets/gif/mewmew.gif" alt="GIF" class="center-gif" />
         </div>
     </section>
     <section class="slider-section">
@@ -77,8 +92,8 @@
                 <img src="assets/image/img1.jpg" alt="Ảnh cưới 1" class="slide-image-main">
 
                 <div class="slide-content">
-                    <p class="slide-caption">"Tình yêu không phải là nhìn nhau.."</p>
-                    <p class="slide-date">🤍 28-29/12/2025 🤍</p>
+                    <p class="slide-caption">"Chẳng cần một tình yêu hoàn hảo"</p>
+                    <p class="slide-date">Save the date </p>
                 </div>
             </div>
 
@@ -87,8 +102,8 @@
                 <img src="assets/image/img2.jpg" alt="Ảnh cưới 2" class="slide-image-main">
 
                 <div class="slide-content">
-                    <p class="slide-caption">"Từ ngày có em..."</p>
-                    <p class="slide-date">LỄ VU QUY • 28.12.2025</p>
+                    <p class="slide-caption">"Chỉ cần một người cùng mình già đi"</p>
+                    <p class="slide-date">LỄ VU QUY </p>
                 </div>
             </div>
 
@@ -97,8 +112,8 @@
                 <img src="assets/image/img3.jpg" alt="Ảnh cưới 3" class="slide-image-main">
 
                 <div class="slide-content">
-                    <p class="slide-caption">"Mỗi khoảnh khắc bên em..."</p>
-                    <p class="slide-date">HÀNH TRÌNH YÊU THƯƠNG</p>
+                    <p class="slide-caption">"Từ nay về sau, vui buồn hay bình yên"</p>
+                    <p class="slide-date">28-29/12/2025</p>
                 </div>
             </div>
 
@@ -107,7 +122,7 @@
                 <img src="assets/image/img4.jpg" alt="Ảnh cưới 4" class="slide-image-main">
 
                 <div class="slide-content">
-                    <p class="slide-caption">"Em là lý do để anh tin..."</p>
+                    <p class="slide-caption">"Chúng mình cùng có nhau"</p>
                     <p class="slide-date">TÌNH YÊU VĨNH CỬU</p>
                 </div>
             </div>
@@ -124,7 +139,7 @@
         </div>
     </section>
     <div class="w-full max-w-6xl mx-auto px-6 py-16"><!-- Gallery Section -->
-        <section class="mb-20">
+         <!--  <section class="mb-20">
             <h2 class="text-4xl text-center mb-4 font-bold" style="color: #8B1538;">Khoảnh Khắc Hạnh Phúc</h2>
             <div class="decorative-line max-w-md mx-auto mb-12"></div>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
@@ -135,21 +150,21 @@
                 <div class="gallery-item"><img src="assets/image/5.jpg" alt="img5" /></div>
                 <div class="gallery-item"><img src="assets/image/6.jpg" alt="img6" /></div>
             </div>
-        </section><!-- Invitation Section -->
+        </section>  -->
         <section class="mb-20 bg-gradient-to-br from-red-50 to-pink-50 p-8 md:p-12 rounded-2xl">
             <h2 id="invitation-title" class="text-4xl text-center mb-6 font-bold" style="color: #8B1538;">Trân Trọng
-                Kính Mời</h2>
+                Kính Mời Quý Khách</h2>
             <div class="decorative-line max-w-md mx-auto mb-8"></div>
             <p id="invitation-text" class="text-center text-lg mb-8 leading-relaxed max-w-2xl mx-auto"
-                style="color: #333;">Sự hiện diện của quý khách là niềm vinh hạnh cho gia đình chúng tôi. Chúng tôi rất
-                mong được đón tiếp quý khách trong ngày trọng đại này.</p>
+                style="color: #333;">Hạnh phúc là khi được chia sẽ khoảnh khắc này cùng những người thân thương nhất.
+                Sự hiện diện của bạn chính là món quà ý nghĩa nhất dành cho chúng mình!</p>
             <div class="text-center mb-8">
                 <div class="inline-block text-left">
                     <p class="text-lg mb-2"><span class="font-semibold" style="color: #8B1538;">⏰ Thời gian:</span>
                         <span id="event-time">18:00 - 20:00</span>
                     </p>
                     <p class="text-lg"><span class="font-semibold" style="color: #8B1538;">📍 Địa điểm:</span> <span
-                            id="event-location">Tổ chức tư gia</span></p>
+                            id="event-location">Tư gia nhà gái</span></p>
                 </div>
             </div>
             <div class="text-center"><button onclick="openInvitation()" class="btn-primary">Xem Chi Tiết Thiệp
@@ -172,7 +187,7 @@
 
                 <div class="text-center">
                     <p class="mb-4 text-lg font-medium" style="color: #C41E3A;">
-                        📍 Địa điểm tổ chức tư gia
+                        📍 Địa điểm Tư gia nhà gái
                     </p>
                     <a href="https://www.google.com/maps/search/?api=1&query=9.695139,105.718833" target="_blank"
                         class="btn-primary inline-block"
@@ -239,10 +254,10 @@
                     <p class="text-lg mb-3"><span class="font-semibold" style="color: #8B1538;">📅 Ngày:</span> <span
                             id="modal-wedding-date">🤍 28-29/12/2025 🤍</span></p>
                     <p class="text-lg mb-3"><span class="font-semibold" style="color: #8B1538;">⏰ Thời gian:</span>
-                        <span id="modal-event-time">18:00 - 20:00</span>
+                        <span id="modal-event-time">14:00 ngày 28 - 10:00 ngày 29</span>
                     </p>
                     <p class="text-lg"><span class="font-semibold" style="color: #8B1538;">📍 Địa điểm:</span> <span
-                            id="modal-event-location">Trung tâm Tiệc Cưới Palace</span></p>
+                            id="modal-event-location">Tư gia nhà gái</span></p>
                 </div>
                 <div class="decorative-line mb-8"></div>
                 <p class="text-lg italic" style="color: #666;">Sự hiện diện của quý khách là niềm vinh hạnh cho gia đình

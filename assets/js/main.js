@@ -409,3 +409,48 @@ if (openBtn) {
 initFirebase(); // <-- Thay thế dòng initializeApp() cũ
 addContinuousPetals();
 slideInterval = setInterval(autoSlide, 5000);
+
+// ==========================================
+// 7. XỬ LÝ ÂM THANH (AUTO PLAY & FALLBACK)
+// ==========================================
+document.addEventListener('DOMContentLoaded', function() {
+    const player = document.getElementById('player');
+    
+    // 1. Cố gắng phát nhạc ngay lập tức khi tải trang
+    if (player) {
+        player.volume = 0.5; // Để âm lượng vừa phải (50%)
+        const playPromise = player.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // Autoplay thành công!
+                console.log("Autoplay started!");
+            }).catch(error => {
+                // Autoplay bị chặn bởi trình duyệt -> Chờ tương tác
+                console.log("Autoplay blocked. Waiting for interaction.");
+            });
+        }
+    }
+
+    // 2. Nếu bị chặn, phát nhạc ngay khi khách chạm vào BẤT KỲ ĐÂU trên web
+    // (Đặc biệt hiệu quả trên điện thoại)
+    function unlockAudio() {
+        if (player && player.paused) {
+            player.play();
+            // Sau khi đã phát được thì gỡ bỏ sự kiện này để không gọi lại nhiều lần
+            document.body.removeEventListener('click', unlockAudio);
+            document.body.removeEventListener('touchstart', unlockAudio);
+        }
+    }
+
+    document.body.addEventListener('click', unlockAudio);
+    document.body.addEventListener('touchstart', unlockAudio);
+    
+    // 3. Đảm bảo nút Mở Thiệp cũng kích hoạt nhạc
+    const openBtn = document.getElementById('open-button');
+    if (openBtn) {
+        openBtn.addEventListener('click', function() {
+            if (player && player.paused) player.play();
+        });
+    }
+});
